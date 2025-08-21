@@ -1,0 +1,366 @@
+.scan-now {
+  min-height: 100vh;
+  padding: 40px 0;
+  transition: var(--transition);
+}
+
+.scan-now.light {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+.scan-now.dark {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.scan-header {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.scan-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+  letter-spacing: -0.5px;
+  background: linear-gradient(45deg, var(--primary-color), #1abc9c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.scan-subtitle {
+  font-size: 1.3rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+  color: #7f8c8d;
+}
+
+.scan-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 60px;
+}
+
+.step-card {
+  flex: 1;
+  min-width: 250px;
+  max-width: 350px;
+  padding: 30px;
+  text-align: center;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-now.light .step-card {
+  background-color: white;
+  box-shadow: var(--box-shadow);
+}
+
+.scan-now.dark .step-card {
+  background-color: var(--dark-gray-bg);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.step-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.step-number {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.step-icon {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  display: inline-block;
+  padding: 20px;
+  background-color: rgba(52, 152, 219, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.step-card:hover .step-icon {
+  transform: scale(1.1);
+  background-color: rgba(52, 152, 219, 0.2);
+}
+
+.step-card h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.step-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.uploader-container {
+  margin: 60px 0;
+  background-color: rgba(52, 152, 219, 0.03);
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid rgba(52, 152, 219, 0.1);
+}
+
+.scan-now.dark .uploader-container {
+  background-color: rgba(52, 152, 219, 0.05);
+  border: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+.uploader-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.uploader-header h2 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.uploader-icon {
+  color: var(--primary-color);
+}
+
+.uploader-header p {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+}
+
+.scan-features {
+  margin: 60px 0;
+}
+
+.scan-features h3 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  position: relative;
+  color: var(--primary-color);
+}
+
+.scan-features h3 span {
+  background-color: white;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.scan-now.dark .scan-features h3 span {
+  background-color: var(--dark-bg);
+}
+
+.scan-features h3:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(52, 152, 219, 0.3);
+  z-index: 0;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.feature-item {
+  padding: 25px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border-left: 4px solid var(--primary-color);
+}
+
+.scan-now.light .feature-item {
+  background-color: white;
+  box-shadow: var(--box-shadow);
+}
+
+.scan-now.dark .feature-item {
+  background-color: var(--dark-gray-bg);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  font-size: 1.6rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.feature-item h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.feature-item p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.scan-disclaimer, .scan-faq {
+  margin: 60px 0;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.scan-now.light .scan-disclaimer, .scan-now.light .scan-faq {
+  background-color: white;
+  box-shadow: var(--box-shadow);
+}
+
+.scan-now.dark .scan-disclaimer, .scan-now.dark .scan-faq {
+  background-color: var(--dark-gray-bg);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.scan-disclaimer {
+  border-left: 5px solid #e74c3c;
+}
+
+.scan-faq {
+  border-top: 5px solid var(--primary-color);
+}
+
+.scan-disclaimer h3, .scan-faq h3 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: var(--primary-color);
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.scan-disclaimer h3:after, .scan-faq h3:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 3px;
+}
+
+.scan-disclaimer p {
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.faq-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.faq-item {
+  margin-bottom: 5px;
+  padding: 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border-left: 3px solid var(--primary-color);
+}
+
+.scan-now.light .faq-item {
+  background-color: rgba(52, 152, 219, 0.05);
+}
+
+.scan-now.dark .faq-item {
+  background-color: rgba(52, 152, 219, 0.1);
+}
+
+.faq-item:hover {
+  transform: translateX(10px);
+}
+
+.faq-item h4 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.faq-item p {
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .scan-title {
+    font-size: 2.5rem;
+  }
+  
+  .scan-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .step-card {
+    min-width: 100%;
+  }
+  
+  .uploader-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .scan-disclaimer h3, .scan-faq h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .scan-title {
+    font-size: 2rem;
+  }
+  
+  .scan-subtitle {
+    font-size: 1rem;
+  }
+  
+  .uploader-container {
+    padding: 20px 15px;
+  }
+  
+  .scan-disclaimer, .scan-faq {
+    padding: 25px 20px;
+  }
+} 
