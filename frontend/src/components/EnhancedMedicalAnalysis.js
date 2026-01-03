@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  FaRobot, FaTimes, FaSpinner, FaHeartbeat, FaEye, 
+  FaTimes, FaSpinner, FaHeartbeat, 
   FaPills, FaClipboardList, FaExclamationTriangle,
   FaCheckCircle, FaInfoCircle, FaBrain, FaMicroscope
 } from 'react-icons/fa';
@@ -20,13 +20,7 @@ const EnhancedMedicalAnalysis = ({
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('overview');
 
-  useEffect(() => {
-    if (isOpen && prediction && confidence) {
-      generateExplanation();
-    }
-  }, [isOpen, prediction, confidence]);
-
-  const generateExplanation = async () => {
+  const generateExplanation = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     
@@ -39,7 +33,13 @@ const EnhancedMedicalAnalysis = ({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [prediction, confidence]);
+
+  useEffect(() => {
+    if (isOpen && prediction && confidence) {
+      generateExplanation();
+    }
+  }, [isOpen, prediction, confidence, generateExplanation]);
 
   const parseExplanation = (text) => {
     const sections = {

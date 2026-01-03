@@ -31,7 +31,7 @@ const Footer = () => {
           <div className="footer-col">
             <h3>Contact Info</h3>
             <ul className="contact-info">
-              <li>123 Medical Center Dr, Healthcare City</li>
+              <li>Bahria University Islamabad</li>
               <li>contact@optipro.com</li>
               <li>+1 (555) 123-4567</li>
             </ul>

@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaQuoteLeft, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaQuoteLeft, FaArrowLeft, FaArrowRight, FaUserMd } from 'react-icons/fa';
 import { ThemeContext } from '../App';
 import './TestimonialSlider.css';
 
@@ -10,21 +10,24 @@ const testimonials = [
     name: 'Dr. Sarah Johnson',
     role: 'Ophthalmologist',
     text: 'OptiPro has transformed how we diagnose retinal conditions. The AI detection is remarkably accurate and has helped us catch diseases in their early stages when they\'re most treatable.',
-    image: 'https://randomuser.me/api/portraits/women/32.jpg',
+    gender: 'female',
+    color: '#3498db',
   },
   {
     id: 2,
     name: 'Dr. Michael Chen',
     role: 'Retina Specialist',
     text: 'The heatmap visualization feature has been invaluable in my practice. It allows me to clearly explain to patients where the issues are and how we plan to address them.',
-    image: 'https://randomuser.me/api/portraits/men/11.jpg',
+    gender: 'male',
+    color: '#9b59b6',
   },
   {
     id: 3,
     name: 'Dr. Emily Rodriguez',
     role: 'Clinical Researcher',
     text: 'We\'ve integrated OptiPro into our research workflow, and it\'s significantly improved our ability to classify and document retinal pathologies consistently across our studies.',
-    image: 'https://randomuser.me/api/portraits/women/44.jpg',
+    gender: 'female',
+    color: '#e74c3c',
   },
 ];
 
@@ -85,8 +88,14 @@ const TestimonialSlider = () => {
               transition={{ duration: 0.5 }}
               className="testimonial"
             >
-              <div className="testimonial-image">
-                <img src={testimonials[current].image} alt={testimonials[current].name} />
+              <div className="testimonial-avatar" style={{ backgroundColor: testimonials[current].color }}>
+                <FaUserMd className="avatar-icon" />
+                <span 
+                  className="gender-badge" 
+                  style={{ color: testimonials[current].gender === 'male' ? '#3498db' : '#e91e63' }}
+                >
+                  {testimonials[current].gender === 'male' ? '♂' : '♀'}
+                </span>
               </div>
               <div className="testimonial-text">
                 <p>{testimonials[current].text}</p>

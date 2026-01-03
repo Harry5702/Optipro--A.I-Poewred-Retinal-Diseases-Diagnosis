@@ -50,3 +50,83 @@ input, textarea, select, button {
   font-family: inherit;
   font-size: inherit;
 }
+
+/* Custom Toast Styles */
+.toast-success {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  color: white !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3) !important;
+  font-weight: 500 !important;
+  padding: 16px 20px !important;
+}
+
+.toast-error {
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+  color: white !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3) !important;
+  font-weight: 500 !important;
+  padding: 16px 20px !important;
+}
+
+.toast-loading {
+  background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+  color: white !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3) !important;
+  font-weight: 500 !important;
+  padding: 16px 20px !important;
+}
+
+/* Success icon animation */
+.toast-success::before {
+  content: "✅ ";
+  margin-right: 8px;
+  animation: bounce 0.6s ease-in-out;
+}
+
+.toast-error::before {
+  content: "❌ ";
+  margin-right: 8px;
+  animation: shake 0.5s ease-in-out;
+}
+
+.toast-loading::before {
+  content: "⏳ ";
+  margin-right: 8px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

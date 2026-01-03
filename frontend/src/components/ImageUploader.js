@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import { FaCloudUploadAlt, FaSpinner, FaTimes, FaInfoCircle, FaExclamationTriangle, FaEye, FaSave, FaRobot, FaFilePdf, FaDownload } from 'react-icons/fa';
+import { FaCloudUploadAlt, FaSpinner, FaTimes, FaInfoCircle, FaExclamationTriangle, FaEye, FaSave, FaRobot, FaFilePdf } from 'react-icons/fa';
 import { ThemeContext } from '../App';
 import { AuthContext } from './AuthModal';
 import { supabaseHelpers } from '../lib/supabase';
@@ -11,9 +11,12 @@ import { v4 as uuidv4 } from 'uuid';
 import toast from 'react-hot-toast';
 import './ImageUploader.css';
 
+// Import sample retina images
+import SampleRetina1 from '../assets/Sample Retina.jpeg';
+import SampleRetina2 from '../assets/Sample Retina 2.jpeg';
+import SampleRetina3 from '../assets/Sample Retina 3.jpeg';
+
 const API_URL = 'http://localhost:5000';
-const SAMPLE_RETINA_IMAGE = '/assets/sample-retina.jpg'; // Sample retina image path
-const SAMPLE_IMAGE_INSTRUCTIONS = "Note: You need to add a valid retinal scan image named 'sample-retina.jpg' to your project's public/assets folder for this example to display properly.";
 
 const ImageUploader = ({ patientId, onScanComplete, showDetailedMetrics = false }) => {
   const { darkMode } = useContext(ThemeContext);
@@ -23,6 +26,7 @@ const ImageUploader = ({ patientId, onScanComplete, showDetailedMetrics = false 
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
+  const [validationError, setValidationError] = useState(null);
   const [confusionMatrix, setConfusionMatrix] = useState(null);
   const [isValidRetinalImage, setIsValidRetinalImage] = useState(true);
   const [showMedicalExplanation, setShowMedicalExplanation] = useState(false);
@@ -82,6 +86,7 @@ const ImageUploader = ({ patientId, onScanComplete, showDetailedMetrics = false 
     setPreview(null);
     setResult(null);
     setError(null);
+    setValidationError(null);
     setIsValidRetinalImage(true);
     
     // Reset the file input
@@ -101,6 +106,7 @@ const ImageUploader = ({ patientId, onScanComplete, showDetailedMetrics = false 
     
     setIsLoading(true);
     setError(null);
+    setValidationError(null);
     
     const formData = new FormData();
     formData.append('file', selectedFile);
@@ -119,8 +125,8 @@ const ImageUploader = ({ patientId, onScanComplete, showDetailedMetrics = false 
         const analysisResult = {
           prediction: response.data.prediction || 'Unknown',
           confidence: response.data.confidence || '0%',
-          imageUrl: response.data.image_url,
-          heatmapUrl: response.data.heatmap_url,
+          imageUrl: response.data.image_base64 || response.data.image_url,
+          heatmapUrl: response.data.heatmap_base64 || response.data.heatmap_url,
           timestamp: new Date().toISOString()
         };
         
@@ -136,7 +142,19 @@ const ImageUploader = ({ patientId, onScanComplete, showDetailedMetrics = false 
       }
     } catch (err) {
       console.error('Error uploading image:', err);
-      if (err.response) {
+      if (err.response && err.response.status === 400) {
+        // Handle validation error from backend
+        const errorData = err.response.data;
+        if (errorData.sample_images) {
+          setValidationError({
+            message: errorData.message || 'Invalid retinal image',
+            details: errorData.details || 'Please upload a valid retinal scan.'
+          });
+          setIsValidRetinalImage(false);
+        } else {
+          setError(errorData.error || errorData.message || 'Invalid image uploaded');
+        }
+      } else if (err.response) {
         console.error('Response data:', err.response.data);
         console.error('Response status:', err.response.status);
         setError(`Server error: ${err.response.status} - ${err.response.data.error || 'Unknown error'}`);
@@ -164,6 +182,7 @@ const ImageUploader = ({ patientId, onScanComplete, showDetailedMetrics = false 
         patient_id: patientId,
         doctor_id: currentUser.id,
         image_url: scanResult.imageUrl || '',
+        heatmap_url: scanResult.heatmapUrl || '',
         diagnosis: scanResult.prediction || 'Unknown',
         confidence: parseFloat(scanResult.confidence?.replace('%', '') || 0),
         doctor_notes: doctorNotes || '',
@@ -179,7 +198,11 @@ const ImageUploader = ({ patientId, onScanComplete, showDetailedMetrics = false 
         toast.error(`Failed to save scan: ${error.message}`);
       } else {
         console.log('Scan saved successfully:', data);
-        toast.success('Scan saved successfully!');
+        toast.success('Scan saved to patient record successfully!', {
+          className: 'toast-success',
+          duration: 4000,
+          position: 'top-right'
+        });
         if (onScanComplete) {
           onScanComplete(data);
         }
@@ -231,7 +254,13 @@ const ImageUploader = ({ patientId, onScanComplete, showDetailedMetrics = false 
 
       // Generate PDF
       const pdfResult = await generatePatientReport(
-        result,
+        {
+          prediction: result.prediction,
+          confidence: result.confidence,
+          image_url: result.imageUrl,
+          heatmap_url: result.heatmapUrl,
+          created_at: result.timestamp
+        },
         doctorData, 
         patientData,
         aiExplanation,
@@ -239,7 +268,11 @@ const ImageUploader = ({ patientId, onScanComplete, showDetailedMetrics = false 
       );
 
       if (pdfResult.success) {
-        toast.success(`PDF report downloaded: ${pdfResult.filename}`);
+        toast.success(`PDF report generated successfully: ${pdfResult.filename}`, {
+          className: 'toast-success',
+          duration: 5000,
+          position: 'top-right'
+        });
       } else {
         toast.error(`PDF generation failed: ${pdfResult.error}`);
       }
@@ -349,17 +382,59 @@ const ImageUploader = ({ patientId, onScanComplete, showDetailedMetrics = false 
           {error && (
             <div className="error-container">
               <p className="error-message"><FaExclamationTriangle /> {error}</p>
-              {!isValidRetinalImage && (
-                <div className="sample-image-container">
-                  <p className="sample-image-label">Example of a valid retinal scan image:</p>
-                  <img 
-                    src={SAMPLE_RETINA_IMAGE} 
-                    alt="Sample retinal scan" 
-                    className="sample-image" 
-                  />
-                  <p className="sample-image-instructions">{SAMPLE_IMAGE_INSTRUCTIONS}</p>
+            </div>
+          )}
+          
+          {validationError && (
+            <div className="validation-error-container">
+              <div className="validation-error-header">
+                <FaExclamationTriangle className="error-icon" />
+                <h4>{validationError.message}</h4>
+              </div>
+              <p className="validation-error-details">{validationError.details}</p>
+              
+              <div className="sample-images-section">
+                <h5>Example of Valid Retinal Scan Images:</h5>
+                <div className="sample-images-grid">
+                  <div className="sample-image-card">
+                    <img
+                      src={SampleRetina1}
+                      alt="Sample retinal scan 1"
+                      className="sample-image"
+                    />
+                    <p className="sample-image-label">Example Retinal Scan 1</p>
+                    <p className="sample-image-description">Normal retinal fundus showing optic disc and blood vessels</p>
+                  </div>
+                  <div className="sample-image-card">
+                    <img
+                      src={SampleRetina2}
+                      alt="Sample retinal scan 2"
+                      className="sample-image"
+                    />
+                    <p className="sample-image-label">Example Retinal Scan 2</p>
+                    <p className="sample-image-description">Retinal image with visible macula and vascular pattern</p>
+                  </div>
+                  <div className="sample-image-card">
+                    <img
+                      src={SampleRetina3}
+                      alt="Sample retinal scan 3"
+                      className="sample-image"
+                    />
+                    <p className="sample-image-label">Example Retinal Scan 3</p>
+                    <p className="sample-image-description">Clear fundus view with central retinal vessels</p>
+                  </div>
                 </div>
-              )}
+                <div className="retinal-image-guidelines">
+                  <h6>What makes a valid retinal scan:</h6>
+                  <ul>
+                    <li>✓ Circular or oval shape showing the back of the eye</li>
+                    <li>✓ Visible blood vessels radiating from the optic disc</li>
+                    <li>✓ Orange-red or reddish coloration</li>
+                    <li>✓ Dark background around the edges</li>
+                    <li>✓ Clear view of the retina and macula</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           )}
         </div>
@@ -397,11 +472,19 @@ const ImageUploader = ({ patientId, onScanComplete, showDetailedMetrics = false 
           <div className="result-images">
             <div className="result-image-card">
               <h4>Original Image</h4>
-              <img src={`${API_URL}${result.imageUrl}`} alt="Original" className="result-image" />
+              <img 
+                src={result.imageUrl.startsWith('data:') ? result.imageUrl : `${API_URL}${result.imageUrl}`} 
+                alt="Original" 
+                className="result-image" 
+              />
             </div>
             <div className="result-image-card">
               <h4>Heatmap Analysis</h4>
-              <img src={`${API_URL}${result.heatmapUrl}`} alt="Heatmap" className="result-image" />
+              <img 
+                src={result.heatmapUrl.startsWith('data:') ? result.heatmapUrl : `${API_URL}${result.heatmapUrl}`} 
+                alt="Heatmap" 
+                className="result-image" 
+              />
             </div>
           </div>
           

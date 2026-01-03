@@ -68,7 +68,7 @@ const ContactUs = () => {
     {
       icon: <FaMapMarkerAlt />,
       title: 'Address',
-      details: '123 Medical Center Dr, Healthcare City',
+      details: 'Bahria University Islamabad',
     },
     {
       icon: <FaBuilding />,
@@ -187,7 +187,7 @@ const ContactUs = () => {
             <div className="map-container">
               <iframe
                 title="OptiPro Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1212423084017!2d-75.1651!3d39.9522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDU3JzA3LjkiTiA3NcKwMDknNTQuNCJX!5e0!3m2!1sen!2sus!4v1620419123456!5m2!1sen!2sus"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3319.726203829891!2d73.06676237535894!3d33.69127273638033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbf1c8aaaaaab%3A0xf314d19a86de9d3f!2sBahria%20University%2C%20Islamabad%20Campus!5e0!3m2!1sen!2s!4v1699999999999!5m2!1sen!2s"
                 width="100%"
                 height="250"
                 style={{ border: 0, borderRadius: '8px' }}

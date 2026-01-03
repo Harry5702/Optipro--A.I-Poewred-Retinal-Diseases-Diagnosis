@@ -11,6 +11,16 @@ A comprehensive web-based platform for retinal disease detection using advanced 
 - **Retinal Scan Analysis**: AI-powered diagnosis with confidence scoring
 - **Visual Heatmap Analysis**: Grad-CAM visualization showing decision areas
 - **Clinical Information**: Detailed diagnosis descriptions and recommendations
+- **Appointment Management**: View, confirm, and manage patient appointment requests
+
+### 👨‍⚕️ Patient Appointment System (NEW!)
+- **Patient Registration**: Separate authentication system for patients
+- **Doctor Discovery**: Browse available doctors with specializations
+- **Appointment Booking**: Schedule appointments with preferred doctors
+- **Time Slot Selection**: Choose from available morning/afternoon slots
+- **Status Tracking**: Real-time appointment status updates
+- **Confirmation System**: Receive confirmations when doctors approve
+- **Patient Portal**: Dedicated dashboard for managing appointments
 
 ### 🧠 AI/ML Capabilities
 - **Multi-Class Detection**: CNV, DME, DRUSEN, and NORMAL classification
@@ -25,6 +35,7 @@ A comprehensive web-based platform for retinal disease detection using advanced 
 - **Row-Level Security**: Doctor-patient data isolation
 - **Audit Trail**: Complete history of all scans and patient interactions
 - **Data Export**: Easy access to patient reports and scan history
+- **Dual Storage**: Supabase + LocalStorage fallback for reliability
 
 ### 🎨 Modern User Experience
 - **Beautiful Interface**: Modern gradients and animations using Framer Motion
@@ -32,6 +43,7 @@ A comprehensive web-based platform for retinal disease detection using advanced 
 - **Intuitive Navigation**: Easy-to-use doctor panel with clear workflows
 - **Real-time Notifications**: Toast notifications for user feedback
 - **Dark/Light Mode**: Customizable appearance (optional)
+- **Session Management**: Automatic timeout and security features
 
 ## 🚀 Quick Start
 
@@ -185,8 +197,41 @@ OptiPro/
 - **Backend**: Heroku, Google Cloud Run, AWS EC2
 - **Database**: Supabase (managed)
 
-## 📚 Documentation
+## � Appointment System
 
+### Quick Start
+See **[QUICK_START.md](QUICK_START.md)** for a 5-minute setup guide!
+
+### For Patients
+1. Visit `/patient-portal`
+2. Register with your details
+3. Browse available doctors
+4. Book appointment with preferred time slot
+5. Track appointment status in real-time
+
+### For Doctors
+1. Login to doctor panel
+2. View appointment requests
+3. Confirm or cancel appointments
+4. Add notes for patients
+5. Manage your schedule
+
+### Available Time Slots
+- Morning: 9:00 AM - 11:30 AM
+- Afternoon: 2:00 PM - 5:00 PM
+- 30-minute intervals
+
+### Appointment Statuses
+- 🟡 **Pending**: Awaiting doctor approval
+- 🟢 **Confirmed**: Appointment accepted
+- 🔴 **Cancelled**: Appointment cancelled
+- 🔵 **Completed**: Appointment finished
+
+## �📚 Documentation
+
+- **[QUICK_START.md](QUICK_START.md)**: Get started in 5 minutes
+- **[APPOINTMENT_SYSTEM_GUIDE.md](APPOINTMENT_SYSTEM_GUIDE.md)**: Complete appointment system documentation
+- **[IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)**: Technical implementation details
 - **[SUPABASE_SETUP.md](SUPABASE_SETUP.md)**: Complete Supabase configuration guide
 - **[PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)**: Comprehensive technical documentation
 - **SQL Schema**: Database structure and relationships
@@ -211,6 +256,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🎯 Future Roadmap
 
+### Appointment System Enhancements
+- [ ] Email/SMS notifications for appointments
+- [ ] Calendar integration (Google Calendar, Outlook)
+- [ ] Video consultation integration
+- [ ] Payment processing for consultations
+- [ ] Appointment rescheduling
+- [ ] Recurring appointments
+
+### Core Features
 - [ ] Mobile application (React Native)
 - [ ] Advanced analytics and reporting
 - [ ] Integration with EMR systems

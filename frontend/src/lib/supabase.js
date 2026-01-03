@@ -49,6 +49,37 @@ export const supabaseHelpers = {
     return { data: data?.[0] || null, error }
   },
 
+  async getAllDoctors() {
+    const { data, error } = await supabase
+      .from(TABLES.DOCTORS)
+      .select('*')
+      .order('created_at', { ascending: false })
+    
+    return { data: data || [], error }
+  },
+
+  // Grouped doctor operations for better organization
+  doctors: {
+    async getAll() {
+      const { data, error } = await supabase
+        .from(TABLES.DOCTORS)
+        .select('*')
+        .order('created_at', { ascending: false })
+      
+      return { data: data || [], error }
+    },
+
+    async getById(id) {
+      const { data, error } = await supabase
+        .from(TABLES.DOCTORS)
+        .select('*')
+        .eq('id', id)
+        .limit(1)
+      
+      return { data: data?.[0] || null, error }
+    }
+  },
+
   // Patient operations
   async createPatient(patientData) {
     const { data, error } = await supabase

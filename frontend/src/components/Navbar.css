@@ -79,6 +79,15 @@
   width: 70%;
 }
 
+.nav-link.active {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  width: 70%;
+}
+
 .navbar-buttons {
   display: flex;
   align-items: center;
@@ -98,13 +107,15 @@
 
 .auth-buttons {
   display: flex;
-  gap: 10px;
+  gap: 15px;
+  align-items: center;
 }
 
-.btn-auth {
+.btn-book-appointment {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   padding: 8px 18px;
   border-radius: 6px;
   font-weight: 600;
@@ -115,12 +126,46 @@
   color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   letter-spacing: 0.5px;
+  font-size: 0.9rem;
 }
 
-.btn-auth:hover {
+.btn-book-appointment:hover {
   background-color: #2980b9;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 2px solid var(--primary-color);
+  background-color: transparent;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+.btn-profile:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+.navbar.dark .btn-profile {
+  border-color: #90cdf4;
+  color: #90cdf4;
+}
+
+.navbar.dark .btn-profile:hover {
+  background-color: #90cdf4;
+  color: #1a202c;
 }
 
 .modal-overlay {
@@ -219,15 +264,43 @@
     transform: translate(0%, 50%);
     display: flex;
     align-items: center;
+    gap: 8px;
   }
 
   .auth-buttons {
     display: flex;
-    margin-left: 10px;
+    gap: 8px;
   }
   
-  .btn-auth {
-    padding: 6px 14px;
+  .btn-book-appointment {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .btn-book-appointment span {
+    display: none;
+  }
+
+  .btn-profile {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navbar-buttons {
+    right: 60px;
+    gap: 6px;
+  }
+
+  .btn-book-appointment {
+    padding: 6px 8px;
+  }
+  
+  .btn-profile {
+    width: 32px;
+    height: 32px;
     font-size: 0.9rem;
   }
 }

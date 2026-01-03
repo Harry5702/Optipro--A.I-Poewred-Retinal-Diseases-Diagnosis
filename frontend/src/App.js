@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import ScanNow from './pages/ScanNow';
 import ContactUs from './pages/ContactUs';
 import DoctorPanel from './pages/DoctorPanel';
+import PatientPortalPage from './pages/PatientPortalPage';
 
 // Layout Components
 import Navbar from './components/Navbar';
@@ -45,6 +46,7 @@ function App() {
                 <Route path="/scan" element={<ScanNow />} />
                 <Route path="/contact" element={<ContactUs />} />
                 <Route path="/doctor-panel" element={<DoctorPanel />} />
+                <Route path="/patient-portal" element={<PatientPortalPage />} />
               </Routes>
             </div>
             <Footer />

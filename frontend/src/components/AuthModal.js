@@ -19,9 +19,29 @@ export const AuthProvider = ({ children }) => {
 
   React.useEffect(() => {
     const userData = localStorage.getItem('user');
-    if (userData) {
-      setCurrentUser(JSON.parse(userData));
-      setIsAuthenticated(true);
+    const loginTime = localStorage.getItem('loginTime');
+    const sessionDuration = 30 * 60 * 1000; // 30 minutes in milliseconds
+    
+    if (userData && loginTime) {
+      const currentTime = Date.now();
+      const timeDiff = currentTime - parseInt(loginTime);
+      
+      if (timeDiff > sessionDuration) {
+        // Session expired, auto logout
+        console.log('Session expired, auto logging out');
+        logout();
+        toast.error('Session expired. Please login again.');
+      } else {
+        setCurrentUser(JSON.parse(userData));
+        setIsAuthenticated(true);
+        
+        // Set up automatic logout when session expires
+        const remainingTime = sessionDuration - timeDiff;
+        setTimeout(() => {
+          logout();
+          toast.error('Session expired due to inactivity');
+        }, remainingTime);
+      }
     }
     setAuthLoading(false);
   }, []);
@@ -43,9 +63,37 @@ export const AuthProvider = ({ children }) => {
         license_number: data.license_number
       };
       
+      // Also ensure this doctor is in the registered doctors list for appointment booking
+      const existingDoctors = JSON.parse(localStorage.getItem('registeredDoctors') || '[]');
+      const doctorForStorage = {
+        id: data.id,
+        full_name: data.full_name,
+        email: data.email,
+        specialization: data.specialization || 'Ophthalmologist',
+        license_number: data.license_number,
+        phone: '+1 (555) 123-4567', // Default phone number for doctors
+        created_at: data.created_at
+      };
+      
+      // Check if doctor already exists in localStorage (avoid duplicates)
+      const doctorExists = existingDoctors.some(doc => doc.id === data.id || doc.email === data.email);
+      if (!doctorExists) {
+        existingDoctors.push(doctorForStorage);
+        localStorage.setItem('registeredDoctors', JSON.stringify(existingDoctors));
+      }
+      
+      const loginTime = Date.now().toString();
       localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('loginTime', loginTime);
       setCurrentUser(user);
       setIsAuthenticated(true);
+      
+      // Set up automatic logout after 30 minutes
+      setTimeout(() => {
+        logout();
+        toast.error('Session expired due to inactivity');
+      }, 30 * 60 * 1000);
+      
       toast.success('Login successful!');
       return { success: true, user };
     } catch (error) {
@@ -117,6 +165,26 @@ export const AuthProvider = ({ children }) => {
       }
 
       console.log('Registration successful! Doctor created:', { ...data, password: '[REDACTED]' });
+      
+      // Also store doctor in localStorage for appointment booking system
+      const existingDoctors = JSON.parse(localStorage.getItem('registeredDoctors') || '[]');
+      const doctorForStorage = {
+        id: data.id,
+        full_name: data.full_name,
+        email: data.email,
+        specialization: data.specialization || 'Ophthalmologist',
+        license_number: data.license_number,
+        phone: '+1 (555) 123-4567', // Default phone number for doctors
+        created_at: data.created_at
+      };
+      
+      // Check if doctor already exists in localStorage (avoid duplicates)
+      const doctorExists = existingDoctors.some(doc => doc.id === data.id || doc.email === data.email);
+      if (!doctorExists) {
+        existingDoctors.push(doctorForStorage);
+        localStorage.setItem('registeredDoctors', JSON.stringify(existingDoctors));
+      }
+      
       toast.success('Account created successfully!');
       return { success: true, user: { id: data.id, name: data.full_name, email: data.email } };
     } catch (error) {
@@ -127,6 +195,9 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('loginTime');
+    localStorage.removeItem('doctorSession');
+    sessionStorage.clear();
     setCurrentUser(null);
     setIsAuthenticated(false);
     toast.success('Logged out successfully');

@@ -786,3 +786,140 @@
     top: -10px;
   }
 }
+
+/* Validation Error Styles */
+.validation-error-container {
+  width: 100%;
+  padding: 25px;
+  background-color: rgba(231, 76, 60, 0.05);
+  border: 2px solid rgba(231, 76, 60, 0.3);
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.validation-error-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.validation-error-header .error-icon {
+  font-size: 1.8rem;
+  color: var(--secondary-color);
+}
+
+.validation-error-header h4 {
+  margin: 0;
+  color: var(--secondary-color);
+  font-size: 1.3rem;
+}
+
+.validation-error-details {
+  margin: 10px 0 20px 0;
+  color: inherit;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.sample-images-section {
+  margin-top: 25px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+}
+
+.image-uploader.dark .sample-images-section {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.sample-images-section h5 {
+  margin: 0 0 15px 0;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+.sample-images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  margin-bottom: 20px;
+}
+
+.sample-image-card {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-uploader.dark .sample-image-card {
+  background-color: var(--dark-gray-bg);
+}
+
+.sample-image-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sample-image-card .sample-image {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.sample-image-card .sample-image-label {
+  margin: 8px 0 5px 0;
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 0.95rem;
+}
+
+.sample-image-card .sample-image-description {
+  margin: 5px 0 0 0;
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.image-uploader.dark .sample-image-card .sample-image-description {
+  color: #aaa;
+}
+
+.retinal-image-guidelines {
+  padding: 15px;
+  background-color: rgba(52, 152, 219, 0.05);
+  border-left: 4px solid var(--primary-color);
+  border-radius: 6px;
+}
+
+.retinal-image-guidelines h6 {
+  margin: 0 0 12px 0;
+  color: var(--primary-color);
+  font-size: 1rem;
+}
+
+.retinal-image-guidelines ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style: none;
+}
+
+.retinal-image-guidelines li {
+  padding: 6px 0;
+  color: inherit;
+  line-height: 1.5;
+}
+
+.retinal-image-guidelines li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  margin-right: 10px;
+}
