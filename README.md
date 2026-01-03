@@ -227,14 +227,10 @@ See **[QUICK_START.md](QUICK_START.md)** for a 5-minute setup guide!
 - 🔴 **Cancelled**: Appointment cancelled
 - 🔵 **Completed**: Appointment finished
 
-## �📚 Documentation
+## � GUI 
 
-- **[QUICK_START.md](QUICK_START.md)**: Get started in 5 minutes
-- **[APPOINTMENT_SYSTEM_GUIDE.md](APPOINTMENT_SYSTEM_GUIDE.md)**: Complete appointment system documentation
-- **[IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)**: Technical implementation details
-- **[SUPABASE_SETUP.md](SUPABASE_SETUP.md)**: Complete Supabase configuration guide
-- **[PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)**: Comprehensive technical documentation
-- **SQL Schema**: Database structure and relationships
+
+
 
 ## 🤝 Contributing
 
