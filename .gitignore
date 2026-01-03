@@ -33,10 +33,10 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 
-# Model files (optional - uncomment if you don't want to push large model files)
-# *.pth
-# *.pt
-# *.h5
+# Model files (too large for GitHub)
+*.pth
+*.pt
+*.h5
 
 # Temporary files
 *.tmp
