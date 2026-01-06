@@ -199,9 +199,6 @@ OptiPro/
 
 ## � Appointment System
 
-### Quick Start
-See **[QUICK_START.md](QUICK_START.md)** for a 5-minute setup guide!
-
 ### For Patients
 1. Visit `/patient-portal`
 2. Register with your details
@@ -227,7 +224,9 @@ See **[QUICK_START.md](QUICK_START.md)** for a 5-minute setup guide!
 - 🔴 **Cancelled**: Appointment cancelled
 - 🔵 **Completed**: Appointment finished
 
-## � GUI 
+## 👁️ GUI 
+<img width="1351" height="611" alt="Hero Section" src="https://github.com/user-attachments/assets/f961990d-1ea4-4efd-b233-3d54d2dec88d" />
+
 
 
 
