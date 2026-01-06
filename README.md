@@ -226,6 +226,34 @@ OptiPro/
 
 ## 👁️ GUI 
 <img width="1351" height="611" alt="Hero Section" src="https://github.com/user-attachments/assets/f961990d-1ea4-4efd-b233-3d54d2dec88d" />
+<img width="1349" height="605" alt="Dark Mode" src="https://github.com/user-attachments/assets/7bff0984-8b69-45c5-8e12-be48e4a6a5ec" />
+<img width="1352" height="600" alt="About Section" src="https://github.com/user-attachments/assets/62fdbe11-afd4-47ba-9134-36200ea1eb93" />
+<img width="1348" height="596" alt="Features Section" src="https://github.com/user-attachments/assets/dc22f577-70be-4455-9a52-a9dbfc05bee9" 
+<img width="1338" height="484" alt="Contact US Page 1" src="https://github.com/user-attachments/assets/1bb3962f-c54c-4986-bdc6-affe58d80633" />
+<img width="1338" height="601" alt="Contact Us page 2" src="https://github.com/user-attachments/assets/2bc4744c-97a3-4d75-8d59-bcacd2f768b3" />
+<img width="498" height="539" alt="Doctor Login Page" src="https://github.com/user-attachments/assets/df06d969-1d7c-4d57-b065-0ec0b9c8b31e" />
+<img width="1349" height="607" alt="Doctor Panel 1" src="https://github.com/user-attachments/assets/9adbcb5d-36ed-40ef-bb3d-1b941ec7df21" />
+<img width="1349" height="613" alt="Doctor Panel 2" src="https://github.com/user-attachments/assets/10194da9-d952-4aac-b36e-32484a653d5a" />
+<img width="1347" height="597" alt="Doctor Panel 3" src="https://github.com/user-attachments/assets/037d2e97-092a-43bc-afa5-13ac814096ef" />
+<img width="1351" height="611" alt="Patient Record in Doctor panel" src="https://github.com/user-attachments/assets/43c08121-4f73-446d-bcab-d0a234544bf5" />
+<img width="1193" height="544" alt="Patient Complete Medical Info 1" src="https://github.com/user-attachments/assets/672a9536-e252-4334-9b65-d2643ecdcff5" />
+<img width="1197" height="512" alt="Patient Complete Medical Info 2" src="https://github.com/user-attachments/assets/6e984b9c-9da0-4b8b-a5f6-cdb5be7a955d" />
+<img width="816" height="586" alt="Patient Report pdf 1" src="https://github.com/user-attachments/assets/b33cca7a-6f1d-4088-9cbf-52ea6ae13204" />
+<img width="815" height="431" alt="Patient Report pdf 2" src="https://github.com/user-attachments/assets/32cf7188-b16e-4d82-b20c-55e49f1d1f21" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
